@@ -164,9 +164,9 @@ int main(void)
     {
         Cy_BLE_ProcessEvents();
         
-        //enterLowPowerEINK();
-        //Cy_SysPm_CpuEnterDeepSleep(CY_SYSPM_WAIT_FOR_INTERRUPT);
-        //exitLowPowerEINK();
+        enterLowPowerEINK();
+        Cy_SysPm_CpuEnterDeepSleep(CY_SYSPM_WAIT_FOR_INTERRUPT);
+        exitLowPowerEINK();
     }
 }
 void enterLowPowerEINK()
