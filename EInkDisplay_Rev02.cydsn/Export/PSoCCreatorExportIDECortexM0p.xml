@@ -88,9 +88,6 @@
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC6\EINK_Clock.h</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC6\CY_EINK_Timer.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC6\CY_EINK_Timer.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC6\Status_SW2.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC6\Status_SW2.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC6\Clock_2.h</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC6\CY_EINK_SPIM_SCBCLK.h</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC6\project.h</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC6\cycodeshareimport.ld</File>

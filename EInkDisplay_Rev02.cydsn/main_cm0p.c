@@ -117,7 +117,7 @@ void BLECallBack(uint32 event, void *eventParam)
         case CY_BLE_EVT_STACK_ON:
         case CY_BLE_EVT_GAP_DEVICE_DISCONNECTED:
         {
-            Cy_BLE_GAPP_StartAdvertisement(CY_BLE_ADVERTISING_SLOW, CY_BLE_PERIPHERAL_CONFIGURATION_0_INDEX);
+            Cy_BLE_GAPP_StartAdvertisement(CY_BLE_ADVERTISING_FAST, CY_BLE_PERIPHERAL_CONFIGURATION_0_INDEX);
         }
         break;
         //case CY_BLE_EVT_GATTS_EXEC_WRITE_REQ:
@@ -131,6 +131,13 @@ void BLECallBack(uint32 event, void *eventParam)
             string[strLength-1] = '\0';
             GUI_DispStringAt(string,0,0);
             UpdateDisplay(UPDATE_MODE,true);
+        }
+        break;
+        case CY_BLE_EVT_GAP_AUTH_REQ:
+        {
+            cy_stc_ble_gap_auth_info_t * gapAuthinfo = (cy_stc_ble_gap_auth_info_t *)eventParam;
+            gapAuthinfo->authErr = CY_BLE_GAP_AUTH_ERROR_NONE;
+            Cy_BLE_GAPP_AuthReqReply(gapAuthinfo);
         }
         break;
         
@@ -188,6 +195,9 @@ void enterLowPowerEINK()
     Cy_GPIO_Clr(CY_EINK_DispIoEn_0_PORT, CY_EINK_DispIoEn_0_NUM);
     Cy_GPIO_Clr(CY_EINK_Ssel_0_PORT, CY_EINK_Ssel_0_NUM);
     
+    EINK_Clock_Disable();
+    CY_EINK_Timer_Disable();
+    CY_EINK_SPIM_Disable();
 }
 void exitLowPowerEINK()
 {
@@ -200,6 +210,10 @@ void exitLowPowerEINK()
     Cy_GPIO_SetDrivemode(CY_EINK_Border_0_PORT, CY_EINK_Border_0_NUM, CY_GPIO_DM_STRONG_IN_OFF);
     Cy_GPIO_SetDrivemode(CY_EINK_DispIoEn_0_PORT, CY_EINK_DispIoEn_0_NUM, CY_GPIO_DM_STRONG_IN_OFF);
     Cy_GPIO_SetDrivemode(CY_EINK_Ssel_0_PORT, CY_EINK_Ssel_0_NUM, CY_GPIO_DM_STRONG_IN_OFF);
+    
+    EINK_Clock_Enable();
+    CY_EINK_Timer_Enable();
+    CY_EINK_SPIM_Enable();
 }
 
 
